@@ -1,0 +1,1009 @@
+{
+  "id": "7439a42d-1250-4ad6-ae50-d457bce3c2c1",
+  "ownerId": "OQ7O94X6q6dr4y3w98I5t54xLnY2",
+  "description": "",
+  "creationDate": "2026-01-13T22:46:05.573Z",
+  "modificationDate": "2026-02-09T15:35:27.668Z",
+  "title": "Stormwreck Isle Seagrow Caves",
+  "levels": [
+    {
+      "index": 0,
+      "tiles": [
+        {
+          "x": 0,
+          "orientation": 0,
+          "element": "BB-001",
+          "y": 0
+        },
+        {
+          "y": 3,
+          "x": 0,
+          "element": "BB-001",
+          "orientation": 0
+        },
+        {
+          "orientation": 0,
+          "y": 6,
+          "element": "BB-001",
+          "x": 0
+        },
+        {
+          "orientation": 0,
+          "y": 0,
+          "element": "BB-001",
+          "x": 3
+        },
+        {
+          "y": 3,
+          "x": 3,
+          "element": "BB-001",
+          "orientation": 0
+        },
+        {
+          "x": 3,
+          "element": "BB-001",
+          "orientation": 0,
+          "y": 6
+        },
+        {
+          "element": "BB-001",
+          "x": 6,
+          "y": 0,
+          "orientation": 0
+        },
+        {
+          "element": "BB-001",
+          "y": 3,
+          "orientation": 0,
+          "x": 6
+        },
+        {
+          "element": "BB-001",
+          "y": 6,
+          "orientation": 0,
+          "x": 6
+        },
+        {
+          "x": 0,
+          "orientation": 0,
+          "y": -3,
+          "element": "BB-001"
+        },
+        {
+          "element": "BB-001",
+          "orientation": 0,
+          "y": -3,
+          "x": 3
+        },
+        {
+          "orientation": 0,
+          "element": "BB-001",
+          "y": -3,
+          "x": 6
+        },
+        {
+          "y": -3,
+          "orientation": 0,
+          "x": -3,
+          "element": "BB-001"
+        },
+        {
+          "x": -3,
+          "element": "BB-001",
+          "orientation": 0,
+          "y": 0
+        },
+        {
+          "x": -3,
+          "y": 3,
+          "element": "BB-001",
+          "orientation": 0
+        },
+        {
+          "x": -3,
+          "y": 6,
+          "element": "BB-001",
+          "orientation": 0
+        }
+      ]
+    },
+    {
+      "tiles": [
+        {
+          "y": -3,
+          "orientation": 2,
+          "element": "LC-003",
+          "x": -3
+        },
+        {
+          "x": -1,
+          "orientation": 0,
+          "y": -2,
+          "element": "LC-009"
+        },
+        {
+          "orientation": 0,
+          "y": 2,
+          "x": 7,
+          "element": "LC-007"
+        },
+        {
+          "y": 1,
+          "element": "LC-008",
+          "orientation": 0,
+          "x": 3
+        },
+        {
+          "y": 2,
+          "x": 3,
+          "element": "LC-007",
+          "orientation": 0
+        },
+        {
+          "y": 3,
+          "orientation": 0,
+          "element": "LC-009",
+          "x": 3
+        },
+        {
+          "y": 4,
+          "x": 4,
+          "element": "LC-009",
+          "orientation": 0
+        },
+        {
+          "orientation": 0,
+          "element": "LC-007",
+          "y": 4,
+          "x": 3
+        },
+        {
+          "y": -2,
+          "element": "LC-008",
+          "x": 0,
+          "orientation": 0
+        },
+        {
+          "x": 1,
+          "element": "LC-001",
+          "orientation": 3,
+          "y": -3
+        },
+        {
+          "x": 1,
+          "element": "LC-009",
+          "orientation": 0,
+          "y": -2
+        },
+        {
+          "y": -1,
+          "element": "LC-009",
+          "orientation": 0,
+          "x": 1
+        },
+        {
+          "element": "LC-009",
+          "orientation": 0,
+          "x": 0,
+          "y": -1
+        },
+        {
+          "x": -3,
+          "element": "LC-001",
+          "y": -2,
+          "orientation": 0
+        },
+        {
+          "y": -1,
+          "x": -3,
+          "orientation": 2,
+          "element": "LC-001"
+        },
+        {
+          "orientation": 2,
+          "y": 1,
+          "x": -3,
+          "element": "LC-001"
+        },
+        {
+          "element": "LC-001",
+          "x": -3,
+          "orientation": 0,
+          "y": 4
+        },
+        {
+          "x": -3,
+          "element": "LC-003",
+          "orientation": 1,
+          "y": 8
+        },
+        {
+          "orientation": 2,
+          "y": 7,
+          "x": -3,
+          "element": "LC-001"
+        },
+        {
+          "orientation": 0,
+          "y": 3,
+          "x": 4,
+          "element": "LC-032"
+        },
+        {
+          "x": -2,
+          "element": "LC-007",
+          "orientation": 0,
+          "y": -2
+        },
+        {
+          "x": -2,
+          "orientation": 0,
+          "element": "LC-009",
+          "y": -1
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "element": "LC-009",
+          "orientation": 0
+        },
+        {
+          "element": "LC-009",
+          "orientation": 0,
+          "y": 0,
+          "x": -2
+        },
+        {
+          "element": "LC-008",
+          "x": 0,
+          "orientation": 0,
+          "y": 1
+        },
+        {
+          "y": 2,
+          "element": "LC-007",
+          "x": 0,
+          "orientation": 0
+        },
+        {
+          "x": 1,
+          "orientation": 0,
+          "element": "LC-009",
+          "y": 3
+        },
+        {
+          "x": 0,
+          "element": "LC-009",
+          "orientation": 0,
+          "y": 3
+        },
+        {
+          "element": "LC-009",
+          "orientation": 0,
+          "y": 4,
+          "x": -2
+        },
+        {
+          "orientation": 0,
+          "element": "LC-007",
+          "y": 4,
+          "x": -1
+        },
+        {
+          "x": 1,
+          "orientation": 0,
+          "y": 4,
+          "element": "LC-009"
+        },
+        {
+          "x": -2,
+          "element": "LC-008",
+          "orientation": 0,
+          "y": 5
+        },
+        {
+          "element": "LC-007",
+          "x": -1,
+          "y": 5,
+          "orientation": 0
+        },
+        {
+          "element": "LC-009",
+          "orientation": 0,
+          "x": 0,
+          "y": 5
+        },
+        {
+          "y": 5,
+          "element": "LC-007",
+          "orientation": 0,
+          "x": 1
+        },
+        {
+          "element": "LC-009",
+          "x": 0,
+          "orientation": 0,
+          "y": 6
+        },
+        {
+          "element": "LC-009",
+          "x": 1,
+          "y": 6,
+          "orientation": 0
+        },
+        {
+          "y": 7,
+          "element": "LC-007",
+          "x": -2,
+          "orientation": 0
+        },
+        {
+          "orientation": 0,
+          "element": "LC-007",
+          "y": 7,
+          "x": -1
+        },
+        {
+          "x": 1,
+          "element": "LC-007",
+          "orientation": 0,
+          "y": 7
+        },
+        {
+          "element": "LC-054",
+          "orientation": 0,
+          "y": 5,
+          "x": -3
+        },
+        {
+          "element": "LC-092",
+          "y": -3,
+          "x": 6,
+          "orientation": 0
+        },
+        {
+          "element": "LC-092",
+          "x": 6,
+          "y": -2,
+          "orientation": 0
+        },
+        {
+          "orientation": 2,
+          "element": "LC-099",
+          "x": 7,
+          "y": -3
+        },
+        {
+          "x": 8,
+          "orientation": 2,
+          "element": "LC-056",
+          "y": -3
+        },
+        {
+          "element": "LC-092",
+          "x": 5,
+          "orientation": 0,
+          "y": -3
+        },
+        {
+          "x": 7,
+          "element": "LC-098",
+          "y": -2,
+          "orientation": 2
+        },
+        {
+          "x": 7,
+          "element": "LC-099",
+          "y": -1,
+          "orientation": 2
+        },
+        {
+          "x": 4,
+          "element": "LC-099",
+          "orientation": 0,
+          "y": -3
+        },
+        {
+          "orientation": 0,
+          "element": "LC-098",
+          "y": -2,
+          "x": 4
+        },
+        {
+          "element": "LC-099",
+          "y": -1,
+          "orientation": 0,
+          "x": 4
+        },
+        {
+          "y": 0,
+          "orientation": 2,
+          "x": 7,
+          "element": "LC-098"
+        },
+        {
+          "orientation": 0,
+          "element": "LC-098",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "y": -1,
+          "x": 5,
+          "orientation": 0,
+          "element": "LC-092"
+        },
+        {
+          "y": -2,
+          "element": "LC-092",
+          "x": 5,
+          "orientation": 0
+        },
+        {
+          "y": -1,
+          "element": "LC-092",
+          "orientation": 0,
+          "x": 6
+        },
+        {
+          "element": "LC-092",
+          "orientation": 0,
+          "x": 6,
+          "y": 0
+        },
+        {
+          "y": 0,
+          "element": "LC-092",
+          "x": 5,
+          "orientation": 0
+        },
+        {
+          "orientation": 3,
+          "element": "LC-096",
+          "y": 1,
+          "x": 4
+        },
+        {
+          "x": 6,
+          "orientation": 3,
+          "element": "LC-099",
+          "y": 1
+        },
+        {
+          "y": 1,
+          "element": "LC-096",
+          "x": 7,
+          "orientation": 2
+        },
+        {
+          "element": "LC-032",
+          "x": 6,
+          "y": 2,
+          "orientation": 0
+        },
+        {
+          "y": 2,
+          "orientation": 0,
+          "x": 4,
+          "element": "LC-009"
+        },
+        {
+          "element": "LC-001",
+          "x": 8,
+          "orientation": 2,
+          "y": -2
+        },
+        {
+          "element": "LC-053",
+          "orientation": 2,
+          "y": 1,
+          "x": 8
+        },
+        {
+          "x": 8,
+          "element": "LC-001",
+          "y": 0,
+          "orientation": 0
+        },
+        {
+          "element": "LC-001",
+          "orientation": 2,
+          "x": 8,
+          "y": 2
+        },
+        {
+          "x": 8,
+          "y": 3,
+          "element": "LC-054",
+          "orientation": 2
+        },
+        {
+          "x": 8,
+          "orientation": 2,
+          "y": 4,
+          "element": "LC-001"
+        },
+        {
+          "x": 5,
+          "orientation": 3,
+          "element": "LC-091",
+          "y": 6
+        },
+        {
+          "y": 8,
+          "x": 8,
+          "element": "BB-003",
+          "orientation": 0
+        },
+        {
+          "orientation": 0,
+          "y": 8,
+          "x": 4,
+          "element": "BB-003"
+        },
+        {
+          "orientation": 2,
+          "y": 8,
+          "element": "LC-923",
+          "x": 8
+        },
+        {
+          "y": 8,
+          "element": "LC-923",
+          "x": 4,
+          "orientation": 3
+        },
+        {
+          "orientation": 2,
+          "y": 5,
+          "element": "LC-058",
+          "x": 7
+        },
+        {
+          "y": 6,
+          "orientation": 2,
+          "element": "LC-105",
+          "x": 6
+        },
+        {
+          "x": 4,
+          "orientation": 2,
+          "element": "LC-105",
+          "y": 6
+        },
+        {
+          "y": 5,
+          "x": 6,
+          "orientation": 1,
+          "element": "LC-102"
+        },
+        {
+          "y": 1,
+          "x": 5,
+          "orientation": 1,
+          "element": "LC-106"
+        },
+        {
+          "x": 5,
+          "orientation": 0,
+          "y": 2,
+          "element": "LC-101"
+        },
+        {
+          "y": 3,
+          "element": "LC-101",
+          "x": 5,
+          "orientation": 2
+        },
+        {
+          "y": 4,
+          "orientation": 0,
+          "element": "LC-101",
+          "x": 5
+        },
+        {
+          "orientation": 0,
+          "y": 5,
+          "x": 5,
+          "element": "LC-104"
+        },
+        {
+          "x": 4,
+          "element": "LC-102",
+          "orientation": 0,
+          "y": 5
+        },
+        {
+          "element": "LC-009",
+          "orientation": 0,
+          "x": 3,
+          "y": 6
+        },
+        {
+          "y": 7,
+          "element": "LC-058",
+          "orientation": 1,
+          "x": 3
+        },
+        {
+          "orientation": 3,
+          "y": 8,
+          "element": "LC-053",
+          "x": 2
+        },
+        {
+          "orientation": 3,
+          "x": 1,
+          "y": 8,
+          "element": "LC-065"
+        },
+        {
+          "element": "LC-055",
+          "x": 3,
+          "orientation": 3,
+          "y": -3
+        },
+        {
+          "orientation": 0,
+          "y": 0,
+          "element": "LC-055",
+          "x": 3
+        },
+        {
+          "orientation": 0,
+          "element": "LC-051",
+          "y": 3,
+          "x": 2
+        },
+        {
+          "orientation": 0,
+          "element": "LC-009",
+          "y": 1,
+          "x": 1
+        },
+        {
+          "element": "LC-032",
+          "orientation": 2,
+          "x": 2,
+          "y": 7
+        },
+        {
+          "element": "LC-007",
+          "x": 2,
+          "y": 6,
+          "orientation": 0
+        },
+        {
+          "y": 1,
+          "orientation": 0,
+          "x": -1,
+          "element": "LC-007"
+        },
+        {
+          "element": "LC-065",
+          "y": -1,
+          "orientation": 2,
+          "x": 8
+        },
+        {
+          "element": "LC-065",
+          "y": 5,
+          "x": 8,
+          "orientation": 2
+        },
+        {
+          "x": 3,
+          "y": -2,
+          "orientation": 0,
+          "element": "LC-064"
+        },
+        {
+          "orientation": 3,
+          "element": "LC-064",
+          "y": 8,
+          "x": -1
+        },
+        {
+          "orientation": 0,
+          "y": 4,
+          "element": "LC-066",
+          "x": 0
+        },
+        {
+          "orientation": 0,
+          "y": 1,
+          "x": 2,
+          "element": "LC-054"
+        },
+        {
+          "orientation": 2,
+          "element": "LC-032",
+          "y": 4,
+          "x": 7
+        },
+        {
+          "element": "LC-009",
+          "x": 6,
+          "orientation": 0,
+          "y": 3
+        },
+        {
+          "element": "LC-050",
+          "y": 4,
+          "orientation": 0,
+          "x": 6
+        },
+        {
+          "y": 3,
+          "orientation": 0,
+          "x": 7,
+          "element": "LC-008"
+        },
+        {
+          "x": 2,
+          "orientation": 0,
+          "y": 2,
+          "element": "LC-055"
+        },
+        {
+          "y": 6,
+          "orientation": 0,
+          "element": "LC-007",
+          "x": -1
+        },
+        {
+          "y": 6,
+          "orientation": 0,
+          "x": -3,
+          "element": "LC-004"
+        },
+        {
+          "orientation": 3,
+          "element": "LC-056",
+          "y": 6,
+          "x": -2
+        },
+        {
+          "element": "LC-004",
+          "orientation": 3,
+          "y": 8,
+          "x": 0
+        },
+        {
+          "y": 7,
+          "element": "LC-056",
+          "orientation": 2,
+          "x": 0
+        },
+        {
+          "x": -3,
+          "orientation": 0,
+          "y": 3,
+          "element": "LC-004"
+        },
+        {
+          "element": "LC-054",
+          "x": -2,
+          "orientation": 1,
+          "y": 3
+        },
+        {
+          "y": 0,
+          "x": -1,
+          "orientation": 0,
+          "element": "LC-032"
+        },
+        {
+          "y": 2,
+          "orientation": 0,
+          "element": "LC-032",
+          "x": -2
+        },
+        {
+          "x": -3,
+          "y": 2,
+          "orientation": 0,
+          "element": "LC-001"
+        },
+        {
+          "y": 2,
+          "orientation": 0,
+          "element": "LC-009",
+          "x": -1
+        },
+        {
+          "x": -2,
+          "y": 8,
+          "orientation": 3,
+          "element": "LC-063"
+        },
+        {
+          "x": -1,
+          "element": "LC-042",
+          "y": 3,
+          "orientation": 3
+        },
+        {
+          "x": 1,
+          "element": "LC-042",
+          "orientation": 1,
+          "y": 2
+        },
+        {
+          "y": -1,
+          "orientation": 0,
+          "x": -1,
+          "element": "LC-036"
+        },
+        {
+          "y": 0,
+          "x": 0,
+          "orientation": 0,
+          "element": "LC-037"
+        },
+        {
+          "y": 1,
+          "element": "LC-038",
+          "orientation": 0,
+          "x": -2
+        },
+        {
+          "element": "LC-039",
+          "orientation": 0,
+          "x": -3,
+          "y": 0
+        },
+        {
+          "orientation": 2,
+          "x": 2,
+          "y": 0,
+          "element": "LC-041"
+        },
+        {
+          "element": "LC-040",
+          "x": 3,
+          "y": -1,
+          "orientation": 2
+        },
+        {
+          "x": 2,
+          "element": "LC-039",
+          "orientation": 1,
+          "y": -3
+        },
+        {
+          "x": 2,
+          "orientation": 0,
+          "element": "LC-007",
+          "y": -1
+        },
+        {
+          "y": -2,
+          "element": "LC-009",
+          "x": 2,
+          "orientation": 0
+        },
+        {
+          "element": "LC-035",
+          "x": -1,
+          "y": -3,
+          "orientation": 1
+        },
+        {
+          "element": "LC-040",
+          "orientation": 1,
+          "x": 0,
+          "y": -3
+        },
+        {
+          "orientation": 1,
+          "element": "LC-040",
+          "x": -2,
+          "y": -3
+        },
+        {
+          "x": 2,
+          "element": "LC-032",
+          "y": 5,
+          "orientation": 0
+        },
+        {
+          "y": 5,
+          "orientation": 0,
+          "x": 3,
+          "element": "LC-052"
+        },
+        {
+          "element": "LC-009",
+          "x": 2,
+          "y": 4,
+          "orientation": 0
+        },
+        {
+          "y": 8,
+          "x": 3,
+          "element": "LC-001",
+          "orientation": 3
+        }
+      ],
+      "index": 1
+    },
+    {
+      "index": 4,
+      "tiles": [
+        {
+          "orientation": 2,
+          "x": 8,
+          "element": "LC-054",
+          "y": 7
+        },
+        {
+          "element": "LC-055",
+          "y": 8,
+          "x": 8,
+          "orientation": 0
+        },
+        {
+          "element": "LC-006",
+          "orientation": 2,
+          "y": 6,
+          "x": 8
+        },
+        {
+          "x": 5,
+          "orientation": 3,
+          "y": 8,
+          "element": "LC-106"
+        },
+        {
+          "x": 5,
+          "y": 7,
+          "orientation": 0,
+          "element": "LC-101"
+        },
+        {
+          "x": 6,
+          "orientation": 1,
+          "y": 8,
+          "element": "LC-056"
+        },
+        {
+          "element": "LC-009",
+          "y": 6,
+          "orientation": 0,
+          "x": 7
+        },
+        {
+          "x": 7,
+          "y": 7,
+          "element": "LC-008",
+          "orientation": 0
+        },
+        {
+          "orientation": 0,
+          "element": "LC-008",
+          "x": 6,
+          "y": 7
+        },
+        {
+          "x": 4,
+          "orientation": 1,
+          "y": 7,
+          "element": "LC-032"
+        },
+        {
+          "element": "LC-064",
+          "y": 8,
+          "orientation": 3,
+          "x": 7
+        },
+        {
+          "x": 4,
+          "element": "LC-051",
+          "orientation": 0,
+          "y": 8
+        }
+      ]
+    }
+  ]
+}

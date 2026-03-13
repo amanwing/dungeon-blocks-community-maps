@@ -1,0 +1,236 @@
+{
+  "levels": [
+    {
+      "tiles": [
+        {
+          "orientation": 0,
+          "element": "BB-001",
+          "y": 3,
+          "x": 6
+        },
+        {
+          "element": "BB-001",
+          "orientation": 0,
+          "y": 0,
+          "x": 6
+        },
+        {
+          "x": 9,
+          "element": "BB-001",
+          "y": 3,
+          "orientation": 0
+        },
+        {
+          "element": "BB-001",
+          "x": 9,
+          "y": 0,
+          "orientation": 0
+        }
+      ],
+      "index": 0
+    },
+    {
+      "index": 1,
+      "tiles": [
+        {
+          "y": 1,
+          "element": "MT2-051",
+          "x": 7,
+          "orientation": 2
+        },
+        {
+          "orientation": 2,
+          "y": 2,
+          "x": 7,
+          "element": "MT2-049"
+        },
+        {
+          "element": "MT2-032",
+          "x": 8,
+          "orientation": 0,
+          "y": 3
+        },
+        {
+          "element": "MT2-032",
+          "orientation": 0,
+          "y": 2,
+          "x": 8
+        },
+        {
+          "element": "MT2-035",
+          "y": 0,
+          "orientation": 0,
+          "x": 6
+        },
+        {
+          "element": "MT2-035",
+          "x": 6,
+          "orientation": 3,
+          "y": 5
+        },
+        {
+          "element": "MT2-042",
+          "x": 11,
+          "y": 1,
+          "orientation": 2
+        },
+        {
+          "x": 11,
+          "element": "MT2-042",
+          "y": 2,
+          "orientation": 2
+        },
+        {
+          "element": "MT2-046",
+          "orientation": 1,
+          "y": 4,
+          "x": 10
+        },
+        {
+          "element": "MT2-044",
+          "y": 4,
+          "x": 9,
+          "orientation": 1
+        },
+        {
+          "y": 5,
+          "x": 10,
+          "element": "MT2-047",
+          "orientation": 3
+        },
+        {
+          "x": 8,
+          "y": 4,
+          "element": "MT2-056",
+          "orientation": 1
+        },
+        {
+          "orientation": 0,
+          "y": 1,
+          "x": 6,
+          "element": "MT2-054"
+        },
+        {
+          "orientation": 0,
+          "x": 7,
+          "element": "MT2-032",
+          "y": 3
+        },
+        {
+          "element": "MT2-037",
+          "y": 4,
+          "orientation": 0,
+          "x": 6
+        },
+        {
+          "orientation": 0,
+          "x": 6,
+          "y": 3,
+          "element": "MT2-036"
+        },
+        {
+          "orientation": 0,
+          "y": 2,
+          "element": "MT2-060",
+          "x": 6
+        },
+        {
+          "orientation": 0,
+          "x": 9,
+          "element": "PS-128",
+          "y": 2
+        },
+        {
+          "orientation": 0,
+          "y": 1,
+          "element": "PS-132",
+          "x": 9
+        },
+        {
+          "orientation": 0,
+          "element": "PS-127",
+          "x": 9,
+          "y": 3
+        },
+        {
+          "orientation": 2,
+          "element": "MT2-042",
+          "y": 3,
+          "x": 11
+        },
+        {
+          "y": 5,
+          "element": "MT2-035",
+          "x": 11,
+          "orientation": 2
+        },
+        {
+          "x": 8,
+          "element": "MT2-040",
+          "orientation": 1,
+          "y": 0
+        },
+        {
+          "orientation": 1,
+          "element": "MT2-052",
+          "x": 10,
+          "y": 0
+        },
+        {
+          "y": 0,
+          "orientation": 1,
+          "element": "MT2-037",
+          "x": 9
+        },
+        {
+          "orientation": 3,
+          "y": 5,
+          "x": 9,
+          "element": "MT2-037"
+        },
+        {
+          "orientation": 2,
+          "y": 4,
+          "x": 11,
+          "element": "MT2-037"
+        },
+        {
+          "x": 8,
+          "y": 5,
+          "orientation": 3,
+          "element": "MT2-052"
+        },
+        {
+          "element": "MT2-032",
+          "x": 8,
+          "y": 1,
+          "orientation": 0
+        },
+        {
+          "x": 7,
+          "y": 4,
+          "element": "MT2-032",
+          "orientation": 0
+        },
+        {
+          "element": "MT2-043",
+          "y": 5,
+          "orientation": 3,
+          "x": 7
+        },
+        {
+          "y": 0,
+          "x": 11,
+          "element": "MT2-035",
+          "orientation": 1
+        }
+      ]
+    }
+  ],
+  "ownerId": "OQ7O94X6q6dr4y3w98I5t54xLnY2",
+  "description": "",
+  "title": "Lodgings",
+  "id": "7aa4954a-eb2c-4c71-9877-56f8b49022bb",
+  "creationDate": "2024-07-29T11:27:24.638Z",
+  "modificationDate": "2026-02-09T15:44:43.033Z"
+}

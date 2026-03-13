@@ -1,0 +1,176 @@
+{
+  "levels": [
+    {
+      "index": 0,
+      "tiles": [
+        {
+          "y": 6,
+          "orientation": 0,
+          "x": 0,
+          "element": "BB-004"
+        },
+        {
+          "x": -3,
+          "y": 6,
+          "element": "BB-004",
+          "orientation": 0
+        },
+        {
+          "y": 6,
+          "orientation": 0,
+          "element": "BB-004",
+          "x": 3
+        },
+        {
+          "orientation": 0,
+          "y": 3,
+          "x": -3,
+          "element": "BB-004"
+        },
+        {
+          "orientation": 0,
+          "element": "BB-004",
+          "y": 3,
+          "x": 0
+        },
+        {
+          "orientation": 0,
+          "element": "BB-004",
+          "y": 3,
+          "x": 3
+        },
+        {
+          "element": "BB-004",
+          "x": 3,
+          "y": 0,
+          "orientation": 0
+        },
+        {
+          "y": 0,
+          "x": 0,
+          "element": "BB-004",
+          "orientation": 0
+        },
+        {
+          "y": 0,
+          "x": -3,
+          "orientation": 0,
+          "element": "BB-004"
+        }
+      ]
+    },
+    {
+      "tiles": [
+        {
+          "orientation": 0,
+          "y": 0,
+          "element": "MH-005",
+          "x": -3
+        },
+        {
+          "orientation": 0,
+          "x": 3,
+          "y": 0,
+          "element": "MH-007"
+        },
+        {
+          "y": 5,
+          "x": 5,
+          "element": "MH-032",
+          "orientation": 2
+        },
+        {
+          "y": 0,
+          "orientation": 1,
+          "x": 2,
+          "element": "MH-031"
+        },
+        {
+          "element": "MH-032",
+          "orientation": 0,
+          "x": -3,
+          "y": 3
+        },
+        {
+          "orientation": 0,
+          "y": 6,
+          "element": "MH-004",
+          "x": -3
+        },
+        {
+          "y": 6,
+          "orientation": 0,
+          "element": "PS-128",
+          "x": 2
+        },
+        {
+          "orientation": 1,
+          "y": 6,
+          "x": 1,
+          "element": "MT1-057"
+        },
+        {
+          "y": 7,
+          "element": "PS-132",
+          "orientation": 1,
+          "x": 1
+        },
+        {
+          "orientation": 0,
+          "x": 2,
+          "y": 7,
+          "element": "PS-127"
+        },
+        {
+          "element": "RR-016",
+          "orientation": 0,
+          "x": 2,
+          "y": 8
+        },
+        {
+          "y": 8,
+          "orientation": 0,
+          "x": 1,
+          "element": "RR-015"
+        },
+        {
+          "orientation": 0,
+          "element": "RR-017",
+          "y": 8,
+          "x": 0
+        },
+        {
+          "element": "MH-006",
+          "x": 5,
+          "orientation": 2,
+          "y": 8
+        },
+        {
+          "x": 0,
+          "y": 7,
+          "element": "MT1-057",
+          "orientation": 2
+        },
+        {
+          "x": 0,
+          "element": "MH-043",
+          "y": 3,
+          "orientation": 0
+        },
+        {
+          "y": 6,
+          "x": 0,
+          "element": "MT2-051",
+          "orientation": 1
+        }
+      ],
+      "index": 1
+    }
+  ],
+  "description": "",
+  "title": "Camp- Woods",
+  "modificationDate": "2026-02-09T15:50:17.029Z",
+  "ownerId": "OQ7O94X6q6dr4y3w98I5t54xLnY2",
+  "id": "f6b7c0f4-46c7-4235-8155-a92d546fbdcb",
+  "creationDate": "2026-01-13T19:58:27.558Z"
+}

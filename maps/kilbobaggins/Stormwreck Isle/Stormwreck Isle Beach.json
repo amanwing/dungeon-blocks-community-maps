@@ -1,0 +1,164 @@
+{
+  "modificationDate": "2026-01-10T12:17:35.134Z",
+  "id": "79b10aaf-e014-4a7a-b91e-421e2927abf7",
+  "levels": [
+    {
+      "index": 0,
+      "tiles": [
+        {
+          "element": "BB-004",
+          "orientation": 0,
+          "x": 3,
+          "y": 0
+        },
+        {
+          "element": "BB-004",
+          "y": 3,
+          "orientation": 0,
+          "x": 3
+        },
+        {
+          "x": 3,
+          "orientation": 0,
+          "element": "BB-004",
+          "y": 6
+        },
+        {
+          "x": 3,
+          "y": 9,
+          "orientation": 0,
+          "element": "BB-004"
+        },
+        {
+          "orientation": 0,
+          "y": 0,
+          "element": "BB-004",
+          "x": 6
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "element": "BB-004",
+          "orientation": 0
+        },
+        {
+          "orientation": 0,
+          "x": 6,
+          "element": "BB-004",
+          "y": 6
+        },
+        {
+          "element": "BB-004",
+          "x": 6,
+          "orientation": 0,
+          "y": 9
+        },
+        {
+          "orientation": 0,
+          "element": "BB-004",
+          "x": 9,
+          "y": 0
+        },
+        {
+          "element": "BB-004",
+          "y": 3,
+          "x": 9,
+          "orientation": 0
+        },
+        {
+          "orientation": 0,
+          "x": 9,
+          "element": "BB-004",
+          "y": 6
+        },
+        {
+          "x": 9,
+          "orientation": 0,
+          "element": "BB-004",
+          "y": 9
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "tiles": [
+        {
+          "orientation": 2,
+          "element": "MH-050",
+          "y": 5,
+          "x": 5
+        },
+        {
+          "orientation": 2,
+          "x": 5,
+          "y": 11,
+          "element": "MH-050"
+        },
+        {
+          "element": "MH-050",
+          "y": 8,
+          "x": 5,
+          "orientation": 2
+        },
+        {
+          "orientation": 0,
+          "element": "MH-046",
+          "y": 0,
+          "x": 3
+        },
+        {
+          "element": "MH-051",
+          "y": 2,
+          "x": 8,
+          "orientation": 2
+        },
+        {
+          "element": "MH-022",
+          "orientation": 0,
+          "x": 6,
+          "y": 3
+        },
+        {
+          "element": "MH-026",
+          "x": 8,
+          "orientation": 1,
+          "y": 6
+        },
+        {
+          "y": 9,
+          "orientation": 1,
+          "element": "MH-030",
+          "x": 8
+        },
+        {
+          "y": 5,
+          "orientation": 2,
+          "x": 11,
+          "element": "MH-133"
+        },
+        {
+          "x": 11,
+          "y": 2,
+          "orientation": 2,
+          "element": "MH-117"
+        },
+        {
+          "orientation": 2,
+          "y": 8,
+          "element": "MH-131",
+          "x": 11
+        },
+        {
+          "x": 11,
+          "y": 11,
+          "orientation": 2,
+          "element": "MH-129"
+        }
+      ]
+    }
+  ],
+  "ownerId": "OQ7O94X6q6dr4y3w98I5t54xLnY2",
+  "creationDate": "2026-01-09T15:19:55.454Z",
+  "title": "Stormwreck Isle Beach",
+  "description": ""
+}
