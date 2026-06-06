@@ -50,19 +50,28 @@ The contents of the repo are visualized in a static GitHub Page built from the m
 To build the site and test locally:
 
 ```bash
-npm run build    # Generate manifest and copy maps into docs/
-npm run serve    # Serve docs/ on localhost
-npm run dev      # Build and serve in one step
-Then open the URL printed by serve (usually http://localhost:3000).
+npm run build    # Generate manifest.json from maps/
+npm run serve    # Serve the site on localhost
+npm run start    # Build and serve in one step
+```
+
+Then open the URL printed by serve (usually `http://localhost:3000`).
+
+## CI and Validation
+
+Pull requests that touch the `maps/` folder are automatically validated:
+
+* Folder ownership: Contributors can only modify their own folder
+* Image pairing: Every `.json` must have a matching image
+* JSON schema: Valid JSON with title, id, levels, creationDate
+* File size limits: Max 5 MB images, 1 MB JSON
+* No duplicate IDs across users
 
 ## Going forward
 
 Planned or potential improvements include:
 
-* Enforced rules for folder structure and file naming
 * Basic metadata conventions (setting, location, module, etc.)
-* Automated parsing of data from .json (what sets used, number of bricks, etc.)
-* A simple frontend to browse maps with previews, filters, and download links
 
 ## Disclaimer
 This project is not affiliated with, endorsed by, or connected to the team behind Dungeon Blocks. It is a purely community-created initiative intended to support sharing and collaboration.

@@ -3,7 +3,7 @@ const path = require('path');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const MAPS_DIR = path.join(REPO_ROOT, 'maps');
-const OUTPUT = path.join(REPO_ROOT, 'docs', 'manifest.json');
+const OUTPUT = path.join(REPO_ROOT, 'manifest.json');
 
 const IMAGE_EXTS = ['.png', '.jpg', '.jpeg', '.webp'];
 

@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'maps/**'
-      - 'scripts/generate-manifest.js'
 
 jobs:
   generate:
@@ -24,19 +21,17 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Build site
-        run: | 
-          npm run build
-          rsync -av --include='*/' --include='*.png' --include='*.jpg' --include='*.jpeg' --include='*.webp' --exclude='*' maps/ docs/maps/
+      - name: Generate manifest
+        run: npm run build
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f docs/manifest.json docs/maps
+          git add manifest.json
           if git diff --cached --quiet; then
             echo "No changes to deploy"
           else
-            git commit -m "chore: regenerate site [skip ci]"
+            git commit -m "chore: regenerate manifest.json [skip ci]"
             git push
           fi

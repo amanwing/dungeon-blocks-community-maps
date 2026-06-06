@@ -1,4 +1,3 @@
 .DS_Store
-docs/test-*.png
-docs/maps/
 node_modules/
+manifest.json
