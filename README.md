@@ -1,8 +1,12 @@
 # Dungeon Blocks Community Maps
 
+<img width="1970" height="1340" alt="image" src="https://github.com/user-attachments/assets/6260953f-78c5-44d2-a061-c159d75b13d7" />
+
 This repository is a community-driven collection of maps created with Dungeon Blocks Builder. Its purpose is to provide a single, centralized place to share, discover, and maintain community-made maps.
 
 Many community members currently share maps via various cloud storage services. While this works, it makes discovery, tracking updates, and long-term availability difficult. This repository aims to solve that by offering a structured, versioned, and searchable home for community content.
+
+Submitted maps can be viewed here: [dungeon-blocks-community-maps](https://cliffback.github.io/dungeon-blocks-community-maps/)
 
 ## Adding maps
 
