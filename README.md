@@ -43,7 +43,9 @@ maps/
 
 ## Website
 
-The contents of the repo are visualized in a static GitHub Page built from the main branch. It can be accessed here: [dungeon-blocks-community-maps](https://cliffback.github.io/dungeon-blocks-community-maps/)
+The contents of the repo are visualized in a static GitHub Pages site deployed to the `gh-pages` branch. It can be accessed here: [dungeon-blocks-community-maps](https://cliffback.github.io/dungeon-blocks-community-maps/)
+
+The site is automatically rebuilt on every push to `main` by the `generate-site.yml` workflow.
 
 ## Local Development
 

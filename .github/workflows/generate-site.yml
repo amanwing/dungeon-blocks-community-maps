@@ -1,4 +1,4 @@
-name: Generate Site
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  generate:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -22,16 +23,23 @@ jobs:
           node-version: '20'
 
       - name: Generate manifest
-        run: npm run build
+        run: node scripts/generate-manifest.js
 
-      - name: Commit and push
+      - name: Deploy to gh-pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Create/switch to gh-pages branch from current main
+          git checkout -B gh-pages
+          
+          # Add the generated manifest.json
           git add manifest.json
+          
+          # Commit if there are changes
           if git diff --cached --quiet; then
             echo "No changes to deploy"
           else
-            git commit -m "chore: regenerate manifest.json [skip ci]"
-            git push
+            git commit -m "chore: deploy to gh-pages [skip ci]"
+            git push origin gh-pages --force
           fi
