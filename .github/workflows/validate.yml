@@ -56,7 +56,7 @@ jobs:
       - name: Check JSON schema and image pairing
         run: |
           ERRORS=0
-          for json_file in $(find maps -name '*.json'); do
+          while IFS= read -r -d '' json_file; do
             # Check valid JSON
             if ! jq empty "$json_file" 2>/dev/null; then
               echo "ERROR: Invalid JSON: $json_file"
@@ -95,7 +95,7 @@ jobs:
               echo "ERROR: No matching image found for $json_file"
               ERRORS=$((ERRORS + 1))
             fi
-          done
+          done < <(find maps -name '*.json' -print0)
           
           if [[ $ERRORS -gt 0 ]]; then
             exit 1
@@ -167,7 +167,7 @@ jobs:
           declare -A id_map
           ERRORS=0
           
-          for json_file in $(find maps -name '*.json'); do
+          while IFS= read -r -d '' json_file; do
             id=$(jq -r '.id // empty' "$json_file")
             if [[ -z "$id" ]]; then
               continue
@@ -183,7 +183,7 @@ jobs:
             else
               id_map[$id]="$user_folder"
             fi
-          done
+          done < <(find maps -name '*.json' -print0)
           
           if [[ $ERRORS -gt 0 ]]; then
             exit 1
