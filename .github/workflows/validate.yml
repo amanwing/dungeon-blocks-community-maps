@@ -2,8 +2,6 @@ name: Validate Maps
 
 on:
   pull_request:
-    paths:
-      - 'maps/**'
 
 jobs:
   validate:
