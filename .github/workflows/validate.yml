@@ -1,0 +1,190 @@
+name: Validate Maps
+
+on:
+  pull_request:
+    paths:
+      - 'maps/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
+          cat changed_files.txt
+
+      - name: Check ownership
+        run: |
+          AUTHOR="${{ github.event.pull_request.user.login }}"
+          OWNER="${{ github.repository_owner }}"
+          echo "PR author: $AUTHOR"
+          echo "Repo owner: $OWNER"
+          
+          VIOLATIONS=0
+          while IFS= read -r file; do
+            # Only check files under maps/
+            if [[ "$file" != maps/* ]]; then
+              continue
+            fi
+            
+            # Repo owner can do anything
+            if [[ "$AUTHOR" == "$OWNER" ]]; then
+              continue
+            fi
+            
+            # Extract the username folder (second path component)
+            USER_FOLDER=$(echo "$file" | cut -d'/' -f2)
+            
+            # Case-insensitive comparison
+            if [[ "${USER_FOLDER,,}" != "${AUTHOR,,}" ]]; then
+              echo "ERROR: $AUTHOR is not allowed to modify $file (expected folder: $AUTHOR, got: $USER_FOLDER)"
+              VIOLATIONS=$((VIOLATIONS + 1))
+            fi
+          done < changed_files.txt
+          
+          if [[ $VIOLATIONS -gt 0 ]]; then
+            exit 1
+          fi
+
+      - name: Check JSON schema and image pairing
+        run: |
+          ERRORS=0
+          while IFS= read -r -d '' json_file; do
+            # Check valid JSON
+            if ! jq empty "$json_file" 2>/dev/null; then
+              echo "ERROR: Invalid JSON: $json_file"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+            
+            # Check required fields
+            if ! jq -e '.title' "$json_file" >/dev/null 2>&1; then
+              echo "ERROR: Missing 'title' in $json_file"
+              ERRORS=$((ERRORS + 1))
+            fi
+            if ! jq -e '.id' "$json_file" >/dev/null 2>&1; then
+              echo "ERROR: Missing 'id' in $json_file"
+              ERRORS=$((ERRORS + 1))
+            fi
+            if ! jq -e '.levels' "$json_file" >/dev/null 2>&1; then
+              echo "ERROR: Missing 'levels' in $json_file"
+              ERRORS=$((ERRORS + 1))
+            fi
+            if ! jq -e '.creationDate' "$json_file" >/dev/null 2>&1; then
+              echo "ERROR: Missing 'creationDate' in $json_file"
+              ERRORS=$((ERRORS + 1))
+            fi
+            
+            # Check image pairing
+            base="${json_file%.json}"
+            found=0
+            for ext in png jpg jpeg webp; do
+              if [[ -f "$base.$ext" ]]; then
+                found=1
+                break
+              fi
+            done
+            if [[ $found -eq 0 ]]; then
+              echo "ERROR: No matching image found for $json_file"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done < <(find maps -name '*.json' -print0)
+          
+          if [[ $ERRORS -gt 0 ]]; then
+            exit 1
+          fi
+
+      - name: Check file sizes
+        run: |
+          ERRORS=0
+          while IFS= read -r file; do
+            if [[ "$file" =~ \.(png|jpg|jpeg|webp)$ ]]; then
+              size=$(stat -c%s "$file" 2>/dev/null || echo 0)
+              if [[ $size -gt 5242880 ]]; then
+                echo "ERROR: $file exceeds 5MB ($size bytes)"
+                ERRORS=$((ERRORS + 1))
+              fi
+            elif [[ "$file" == *.json ]]; then
+              size=$(stat -c%s "$file" 2>/dev/null || echo 0)
+              if [[ $size -gt 1048576 ]]; then
+                echo "ERROR: $file exceeds 1MB ($size bytes)"
+                ERRORS=$((ERRORS + 1))
+              fi
+            fi
+          done < changed_files.txt
+          
+          if [[ $ERRORS -gt 0 ]]; then
+            exit 1
+          fi
+
+      - name: Check file types
+        run: |
+          ERRORS=0
+          while IFS= read -r file; do
+            if [[ "$file" != maps/* ]]; then
+              continue
+            fi
+            if [[ "$file" == *.json ]] || [[ "$file" == *.png ]] || [[ "$file" == *.jpg ]] || [[ "$file" == *.jpeg ]] || [[ "$file" == *.webp ]] || [[ "$file" == *.md ]]; then
+              continue
+            fi
+            echo "ERROR: Illegal file type in maps/: $file"
+            ERRORS=$((ERRORS + 1))
+          done < changed_files.txt
+          
+          if [[ $ERRORS -gt 0 ]]; then
+            exit 1
+          fi
+
+      - name: Check folder depth
+        run: |
+          WARNINGS=0
+          while IFS= read -r file; do
+            if [[ "$file" != maps/* ]]; then
+              continue
+            fi
+            # Count depth relative to maps/
+            rel="${file#maps/}"
+            depth=$(echo "$rel" | tr '/' '\n' | wc -l)
+            if [[ $depth -gt 4 ]]; then
+              echo "WARNING: $file exceeds recommended depth of 4 (depth: $depth)"
+              WARNINGS=$((WARNINGS + 1))
+            fi
+          done < changed_files.txt
+          
+          # Only warn, don't fail
+          echo "Total depth warnings: $WARNINGS"
+
+      - name: Check duplicate IDs across users
+        run: |
+          # Build map of id -> user folders
+          declare -A id_map
+          ERRORS=0
+          
+          while IFS= read -r -d '' json_file; do
+            id=$(jq -r '.id // empty' "$json_file")
+            if [[ -z "$id" ]]; then
+              continue
+            fi
+            user_folder=$(echo "$json_file" | cut -d'/' -f2)
+            
+            if [[ -n "${id_map[$id]}" ]]; then
+              existing="${id_map[$id]}"
+              if [[ "$existing" != "$user_folder" ]]; then
+                echo "ERROR: Duplicate ID '$id' across users: $existing and $user_folder (file: $json_file)"
+                ERRORS=$((ERRORS + 1))
+              fi
+            else
+              id_map[$id]="$user_folder"
+            fi
+          done < <(find maps -name '*.json' -print0)
+          
+          if [[ $ERRORS -gt 0 ]]; then
+            exit 1
+          fi

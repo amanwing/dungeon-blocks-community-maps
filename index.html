@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Community-driven collection of maps for Dungeon Blocks Builder. Browse, preview, and download 3D printable modular terrain maps.">
+  <meta name="theme-color" content="#1e1e2e">
+  <link rel="icon" type="image/svg+xml" href="src/favicon.svg">
+  <title>Dungeon Blocks Community Maps</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Dungeon Blocks Community Maps</h1>
+      <div class="controls">
+        <label for="search" class="visually-hidden">Search maps</label>
+        <input type="search" id="search" placeholder="Search maps..." autocomplete="off">
+        <label for="author-filter" class="visually-hidden">Filter by author</label>
+        <select id="author-filter">
+          <option value="">All authors</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav id="breadcrumbs" aria-label="Breadcrumb" class="hidden"></nav>
+    <div id="grid" class="grid"></div>
+    <div id="loading" class="loading">Loading maps...</div>
+    <div id="error" class="error hidden">Failed to load maps. Please try again later.</div>
+  </main>
+
+  <dialog id="map-modal" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-header">
+        <div class="modal-image-wrap">
+          <img id="modal-image" src="" alt="">
+        </div>
+        <div class="modal-info">
+          <h2 id="modal-title"></h2>
+          <p id="modal-description"></p>
+          <div id="modal-meta"></div>
+          <div class="modal-actions">
+            <a id="modal-download" class="btn" href="#" download>Download JSON</a>
+          </div>
+        </div>
+      </div>
+      <details id="modal-bricks">
+        <summary>
+          <span>Brick list</span>
+          <button id="modal-download-bricks" class="download-icon" aria-label="Download brick list as text" title="Download brick list">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </button>
+        </summary>
+        <div id="modal-bricks-table"></div>
+      </details>
+    </div>
+  </dialog>
+
+  <script src="src/app.js"></script>
+</body>
+</html>

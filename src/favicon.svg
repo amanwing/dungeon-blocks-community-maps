@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Bottom layer: 3 bricks -->
+  <rect x="2" y="20" width="9" height="7" rx="1" fill="#89b4fa"/>
+  <rect x="11.5" y="20" width="9" height="7" rx="1" fill="#a6e3a1"/>
+  <rect x="21" y="20" width="9" height="7" rx="1" fill="#f38ba8"/>
+  
+  <!-- Middle layer: 2 bricks -->
+  <rect x="6.5" y="12" width="9" height="7" rx="1" fill="#f9e2af"/>
+  <rect x="16.5" y="12" width="9" height="7" rx="1" fill="#cba6f7"/>
+  
+  <!-- Top layer: 1 brick -->
+  <rect x="11.5" y="4" width="9" height="7" rx="1" fill="#94e2d5"/>
+  
+  <!-- Shadow base -->
+  <rect x="2" y="28" width="28" height="2" rx="1" fill="#313244"/>
+</svg>

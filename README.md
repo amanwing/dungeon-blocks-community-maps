@@ -1,8 +1,12 @@
 # Dungeon Blocks Community Maps
 
+<img width="1970" height="1340" alt="image" src="https://github.com/user-attachments/assets/6260953f-78c5-44d2-a061-c159d75b13d7" />
+
 This repository is a community-driven collection of maps created with Dungeon Blocks Builder. Its purpose is to provide a single, centralized place to share, discover, and maintain community-made maps.
 
 Many community members currently share maps via various cloud storage services. While this works, it makes discovery, tracking updates, and long-term availability difficult. This repository aims to solve that by offering a structured, versioned, and searchable home for community content.
+
+Submitted maps can be viewed here: [dungeon-blocks-community-maps](https://cliffback.github.io/dungeon-blocks-community-maps/)
 
 ## Adding maps
 
@@ -41,14 +45,39 @@ maps/
 * Keep names descriptive and consistent
 * Once complete, submit a Pull Request.
 
+## Website
+
+The contents of the repo are visualized in a static GitHub Pages site deployed to the `gh-pages` branch. It can be accessed here: [dungeon-blocks-community-maps](https://cliffback.github.io/dungeon-blocks-community-maps/)
+
+The site is automatically rebuilt on every push to `main` by the `generate-site.yml` workflow.
+
+## Local Development
+
+To build the site and test locally:
+
+```bash
+npm run build    # Generate manifest.json from maps/
+npm run serve    # Serve the site on localhost
+npm run start    # Build and serve in one step
+```
+
+Then open the URL printed by serve (usually `http://localhost:3000`).
+
+## CI and Validation
+
+Pull requests that touch the `maps/` folder are automatically validated:
+
+* Folder ownership: Contributors can only modify their own folder
+* Image pairing: Every `.json` must have a matching image
+* JSON schema: Valid JSON with title, id, levels, creationDate
+* File size limits: Max 5 MB images, 1 MB JSON
+* No duplicate IDs across users
+
 ## Going forward
 
 Planned or potential improvements include:
 
-* Enforced rules for folder structure and file naming
 * Basic metadata conventions (setting, location, module, etc.)
-* Automated parsing of data from .json (what sets used, number of bricks, etc.)
-* A simple frontend to browse maps with previews, filters, and download links
 
 ## Disclaimer
 This project is not affiliated with, endorsed by, or connected to the team behind Dungeon Blocks. It is a purely community-created initiative intended to support sharing and collaboration.
