@@ -41,6 +41,20 @@ maps/
 * Keep names descriptive and consistent
 * Once complete, submit a Pull Request.
 
+## Website
+
+The contents of the repo are visualized in a static GitHub Page built from the main branch. It can be accessed here: [dungeon-blocks-community-maps](https://cliffback.github.io/dungeon-blocks-community-maps/)
+
+## Local Development
+
+To build the site and test locally:
+
+```bash
+npm run build    # Generate manifest and copy maps into docs/
+npm run serve    # Serve docs/ on localhost
+npm run dev      # Build and serve in one step
+Then open the URL printed by serve (usually http://localhost:3000).
+
 ## Going forward
 
 Planned or potential improvements include:

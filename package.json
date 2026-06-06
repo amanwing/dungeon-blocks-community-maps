@@ -1,0 +1,11 @@
+{
+  "name": "dungeon-blocks-community-maps",
+  "version": "1.0.0",
+  "description": "Community-driven collection of maps for Dungeon Blocks Builder",
+  "scripts": {
+    "build": "node scripts/generate-manifest.js && rm -rf docs/maps && cp -r maps docs/maps",
+    "serve": "npx serve docs/",
+    "start": "npm run build && npm run serve"
+  },
+  "private": true
+}
