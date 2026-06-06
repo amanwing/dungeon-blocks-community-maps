@@ -25,7 +25,9 @@ jobs:
           node-version: '20'
 
       - name: Build site
-        run: npm run build
+        run: | 
+          npm run build
+          rsync -av --include='*/' --include='*.png' --include='*.jpg' --include='*.jpeg' --include='*.webp' --exclude='*' maps/ docs/maps/
 
       - name: Commit and push
         run: |
