@@ -4,83 +4,119 @@ on:
   pull_request:
 
 jobs:
-  validate:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      maps_changed: ${{ steps.detect.outputs.maps_changed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Detect maps changes
+        id: detect
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
+          if grep -q '^maps/' changed_files.txt; then
+            echo "maps_changed=true" >> $GITHUB_OUTPUT
+            echo "true" > maps-changed.txt
+          else
+            echo "maps_changed=false" >> $GITHUB_OUTPUT
+            echo "false" > maps-changed.txt
+          fi
+      - name: Upload maps-changed flag
+        uses: actions/upload-artifact@v4
+        with:
+          name: maps-changed
+          path: maps-changed.txt
+
+  check-ownership:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.maps_changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Get changed files
-        id: changed
-        run: |
-          git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
-          cat changed_files.txt
-
+        run: git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
       - name: Check ownership
         run: |
           AUTHOR="${{ github.event.pull_request.user.login }}"
           OWNER="${{ github.repository_owner }}"
-          echo "PR author: $AUTHOR"
-          echo "Repo owner: $OWNER"
-          
-          VIOLATIONS=0
+          ERRORS=""
           while IFS= read -r file; do
-            # Only check files under maps/
-            if [[ "$file" != maps/* ]]; then
-              continue
-            fi
-            
-            # Repo owner can do anything
-            if [[ "$AUTHOR" == "$OWNER" ]]; then
-              continue
-            fi
-            
-            # Extract the username folder (second path component)
+            [[ "$file" != maps/* ]] && continue
+            [[ "$AUTHOR" == "$OWNER" ]] && continue
             USER_FOLDER=$(echo "$file" | cut -d'/' -f2)
-            
-            # Case-insensitive comparison
             if [[ "${USER_FOLDER,,}" != "${AUTHOR,,}" ]]; then
-              echo "ERROR: $AUTHOR is not allowed to modify $file (expected folder: $AUTHOR, got: $USER_FOLDER)"
-              VIOLATIONS=$((VIOLATIONS + 1))
+              ERRORS="${ERRORS}- $AUTHOR is not allowed to modify $file (expected folder: $AUTHOR, got: $USER_FOLDER)\n"
             fi
           done < changed_files.txt
-          
-          if [[ $VIOLATIONS -gt 0 ]]; then
+          if [[ -n "$ERRORS" ]]; then
+            echo -e "$ERRORS" > ownership-errors.txt
+            cat ownership-errors.txt
             exit 1
           fi
+      - name: Upload errors
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ownership-errors
+          path: ownership-errors.txt
 
-      - name: Check JSON schema and image pairing
+  check-json-schema:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.maps_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check JSON schema
         run: |
-          ERRORS=0
+          ERRORS=""
           while IFS= read -r -d '' json_file; do
-            # Check valid JSON
             if ! jq empty "$json_file" 2>/dev/null; then
-              echo "ERROR: Invalid JSON: $json_file"
-              ERRORS=$((ERRORS + 1))
+              ERRORS="${ERRORS}- Invalid JSON: $json_file\n"
               continue
             fi
-            
-            # Check required fields
             if ! jq -e '.title' "$json_file" >/dev/null 2>&1; then
-              echo "ERROR: Missing 'title' in $json_file"
-              ERRORS=$((ERRORS + 1))
+              ERRORS="${ERRORS}- Missing 'title' in $json_file\n"
             fi
             if ! jq -e '.id' "$json_file" >/dev/null 2>&1; then
-              echo "ERROR: Missing 'id' in $json_file"
-              ERRORS=$((ERRORS + 1))
+              ERRORS="${ERRORS}- Missing 'id' in $json_file\n"
             fi
             if ! jq -e '.levels' "$json_file" >/dev/null 2>&1; then
-              echo "ERROR: Missing 'levels' in $json_file"
-              ERRORS=$((ERRORS + 1))
+              ERRORS="${ERRORS}- Missing 'levels' in $json_file\n"
             fi
             if ! jq -e '.creationDate' "$json_file" >/dev/null 2>&1; then
-              echo "ERROR: Missing 'creationDate' in $json_file"
-              ERRORS=$((ERRORS + 1))
+              ERRORS="${ERRORS}- Missing 'creationDate' in $json_file\n"
             fi
-            
-            # Check image pairing
+          done < <(find maps -name '*.json' -print0)
+          if [[ -n "$ERRORS" ]]; then
+            echo -e "$ERRORS" > json-schema-errors.txt
+            cat json-schema-errors.txt
+            exit 1
+          fi
+      - name: Upload errors
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: json-schema-errors
+          path: json-schema-errors.txt
+
+  check-image-pairing:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.maps_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check image pairing
+        run: |
+          ERRORS=""
+          while IFS= read -r -d '' json_file; do
             base="${json_file%.json}"
             found=0
             for ext in png jpg jpeg webp; do
@@ -90,99 +126,190 @@ jobs:
               fi
             done
             if [[ $found -eq 0 ]]; then
-              echo "ERROR: No matching image found for $json_file"
-              ERRORS=$((ERRORS + 1))
+              ERRORS="${ERRORS}- No matching image found for $json_file\n"
             fi
           done < <(find maps -name '*.json' -print0)
-          
-          if [[ $ERRORS -gt 0 ]]; then
+          if [[ -n "$ERRORS" ]]; then
+            echo -e "$ERRORS" > image-pairing-errors.txt
+            cat image-pairing-errors.txt
             exit 1
           fi
+      - name: Upload errors
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-pairing-errors
+          path: image-pairing-errors.txt
 
+  check-file-sizes:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.maps_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        run: git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
       - name: Check file sizes
         run: |
-          ERRORS=0
+          ERRORS=""
           while IFS= read -r file; do
             if [[ "$file" =~ \.(png|jpg|jpeg|webp)$ ]]; then
               size=$(stat -c%s "$file" 2>/dev/null || echo 0)
               if [[ $size -gt 5242880 ]]; then
-                echo "ERROR: $file exceeds 5MB ($size bytes)"
-                ERRORS=$((ERRORS + 1))
+                ERRORS="${ERRORS}- $file exceeds 5MB ($(numfmt --to=iec $size))\n"
               fi
             elif [[ "$file" == *.json ]]; then
               size=$(stat -c%s "$file" 2>/dev/null || echo 0)
               if [[ $size -gt 1048576 ]]; then
-                echo "ERROR: $file exceeds 1MB ($size bytes)"
-                ERRORS=$((ERRORS + 1))
+                ERRORS="${ERRORS}- $file exceeds 1MB ($(numfmt --to=iec $size))\n"
               fi
             fi
           done < changed_files.txt
-          
-          if [[ $ERRORS -gt 0 ]]; then
+          if [[ -n "$ERRORS" ]]; then
+            echo -e "$ERRORS" > file-size-errors.txt
+            cat file-size-errors.txt
             exit 1
           fi
+      - name: Upload errors
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: file-size-errors
+          path: file-size-errors.txt
 
+  check-file-types:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.maps_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        run: git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
       - name: Check file types
         run: |
-          ERRORS=0
+          ERRORS=""
           while IFS= read -r file; do
-            if [[ "$file" != maps/* ]]; then
-              continue
-            fi
+            [[ "$file" != maps/* ]] && continue
             if [[ "$file" == *.json ]] || [[ "$file" == *.png ]] || [[ "$file" == *.jpg ]] || [[ "$file" == *.jpeg ]] || [[ "$file" == *.webp ]] || [[ "$file" == *.md ]]; then
               continue
             fi
-            echo "ERROR: Illegal file type in maps/: $file"
-            ERRORS=$((ERRORS + 1))
+            ERRORS="${ERRORS}- Illegal file type in maps/: $file\n"
           done < changed_files.txt
-          
-          if [[ $ERRORS -gt 0 ]]; then
+          if [[ -n "$ERRORS" ]]; then
+            echo -e "$ERRORS" > file-type-errors.txt
+            cat file-type-errors.txt
             exit 1
           fi
+      - name: Upload errors
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: file-type-errors
+          path: file-type-errors.txt
 
+  check-folder-depth:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.maps_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        run: git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
       - name: Check folder depth
+        id: check
         run: |
-          WARNINGS=0
+          WARNINGS=""
           while IFS= read -r file; do
-            if [[ "$file" != maps/* ]]; then
-              continue
-            fi
-            # Count depth relative to maps/
+            [[ "$file" != maps/* ]] && continue
             rel="${file#maps/}"
             depth=$(echo "$rel" | tr '/' '\n' | wc -l)
             if [[ $depth -gt 4 ]]; then
-              echo "WARNING: $file exceeds recommended depth of 4 (depth: $depth)"
-              WARNINGS=$((WARNINGS + 1))
+              WARNINGS="${WARNINGS}- $file exceeds recommended depth of 4 (depth: $depth)\n"
             fi
           done < changed_files.txt
-          
-          # Only warn, don't fail
-          echo "Total depth warnings: $WARNINGS"
+          if [[ -n "$WARNINGS" ]]; then
+            echo -e "$WARNINGS" > folder-depth-warnings.txt
+            echo "has_warnings=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Upload warnings
+        if: steps.check.outputs.has_warnings == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: folder-depth-warnings
+          path: folder-depth-warnings.txt
 
-      - name: Check duplicate IDs across users
+  check-duplicate-ids:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.maps_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check duplicate IDs
         run: |
-          # Build map of id -> user folders
           declare -A id_map
-          ERRORS=0
-          
+          ERRORS=""
           while IFS= read -r -d '' json_file; do
             id=$(jq -r '.id // empty' "$json_file")
-            if [[ -z "$id" ]]; then
-              continue
-            fi
+            [[ -z "$id" ]] && continue
             user_folder=$(echo "$json_file" | cut -d'/' -f2)
-            
             if [[ -n "${id_map[$id]}" ]]; then
               existing="${id_map[$id]}"
               if [[ "$existing" != "$user_folder" ]]; then
-                echo "ERROR: Duplicate ID '$id' across users: $existing and $user_folder (file: $json_file)"
-                ERRORS=$((ERRORS + 1))
+                ERRORS="${ERRORS}- Duplicate ID '$id' across users: $existing and $user_folder (file: $json_file)\n"
               fi
             else
               id_map[$id]="$user_folder"
             fi
           done < <(find maps -name '*.json' -print0)
-          
-          if [[ $ERRORS -gt 0 ]]; then
+          if [[ -n "$ERRORS" ]]; then
+            echo -e "$ERRORS" > duplicate-id-errors.txt
+            cat duplicate-id-errors.txt
             exit 1
           fi
+      - name: Upload errors
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: duplicate-id-errors
+          path: duplicate-id-errors.txt
+
+  validate:
+    needs:
+      - detect-changes
+      - check-ownership
+      - check-json-schema
+      - check-image-pairing
+      - check-file-sizes
+      - check-file-types
+      - check-folder-depth
+      - check-duplicate-ids
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gate
+        run: |
+          if [[ "${{ needs.detect-changes.outputs.maps_changed }}" == "false" ]]; then
+            echo "No maps/ changes detected — validation skipped."
+            exit 0
+          fi
+          if [[ "${{ needs.check-ownership.result }}" == "failure" ]] || \
+             [[ "${{ needs.check-json-schema.result }}" == "failure" ]] || \
+             [[ "${{ needs.check-image-pairing.result }}" == "failure" ]] || \
+             [[ "${{ needs.check-file-sizes.result }}" == "failure" ]] || \
+             [[ "${{ needs.check-file-types.result }}" == "failure" ]] || \
+             [[ "${{ needs.check-folder-depth.result }}" == "failure" ]] || \
+             [[ "${{ needs.check-duplicate-ids.result }}" == "failure" ]]; then
+            echo "One or more validation checks failed."
+            exit 1
+          fi
+          echo "All validation checks passed."
