@@ -124,10 +124,15 @@ jobs:
         run: |
           ERRORS=""
           while IFS= read -r -d '' json_file; do
-            base="${json_file%.json}"
+            dir=$(dirname "$json_file")
+            name=$(basename "$json_file" .json)
             found=0
-            for ext in png jpg jpeg webp; do
-              if [[ -f "$base.$ext" ]]; then
+            for img in "$dir"/*; do
+              [[ -f "$img" ]] || continue
+              img_name=$(basename "$img")
+              img_base="${img_name%.*}"
+              ext="${img_name##*.}"
+              if [[ "${img_base,,}" == "${name,,}" ]] && [[ "${ext,,}" =~ ^(png|jpg|jpeg|webp)$ ]]; then
                 found=1
                 break
               fi

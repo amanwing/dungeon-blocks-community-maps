@@ -61,18 +61,17 @@ jobs:
               { name: 'Folder Depth', warningFile: 'folder-depth-warnings.txt' }
             ];
 
-            let body = '';
-            let hasErrors = false;
-            let hasWarnings = false;
+            const successes = [];
+            const failures = [];
+            const warningBlocks = [];
 
             for (const check of checks) {
               const filePath = path.join(artifactsDir, check.errorFile);
               if (fs.existsSync(filePath)) {
                 const content = fs.readFileSync(filePath, 'utf8').trim();
-                body += `### ❌ ${check.name}\n${content}\n\n`;
-                hasErrors = true;
+                failures.push(`❌ **${check.name}**: Failed\n${content}`);
               } else {
-                body += `### ✅ ${check.name}\nPassed.\n\n`;
+                successes.push(`✅ **${check.name}**: Passed`);
               }
             }
 
@@ -80,15 +79,17 @@ jobs:
               const filePath = path.join(artifactsDir, warning.warningFile);
               if (fs.existsSync(filePath)) {
                 const content = fs.readFileSync(filePath, 'utf8').trim();
-                body += `### ⚠️ ${warning.name}\n${content}\n\n`;
-                hasWarnings = true;
+                warningBlocks.push(`⚠️ **${warning.name}**\n${content}`);
               }
             }
 
+            const lines = [...successes, ...failures, ...warningBlocks];
+            const body = lines.join('\n\n');
+
             let report = '<!-- dungeon-blocks-validation-bot -->\n';
-            if (hasErrors) {
+            if (failures.length > 0) {
               report += `## 🚫 Map Validation Failed\n\n${body}`;
-            } else if (hasWarnings) {
+            } else if (warningBlocks.length > 0) {
               report += `## ⚠️ Map Validation Passed with Warnings\n\n${body}`;
             } else {
               report += `## ✅ Map Validation Passed\n\n${body}`;
